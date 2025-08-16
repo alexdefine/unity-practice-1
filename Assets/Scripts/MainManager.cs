@@ -88,8 +88,11 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
-        DataPersistanceManager.Instance.highScore = m_Points;
-        DataPersistanceManager.Instance.Save();
+        if (m_Points > DataPersistanceManager.Instance.highScore)
+        {
+            DataPersistanceManager.Instance.highScore = m_Points;
+            DataPersistanceManager.Instance.Save();
+        }
 
         m_GameOver = true;
         GameOverText.SetActive(true);
